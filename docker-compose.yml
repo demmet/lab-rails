@@ -24,3 +24,11 @@ services:
       POSTGRES_PASSWORD: secretpassword
     ports: ["5432:5432"]
     expose: ["5432"]
+
+  redis:
+    container_name: lab-rails-redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"

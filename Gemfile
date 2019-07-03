@@ -37,6 +37,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development do
@@ -54,6 +57,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -64,3 +72,27 @@ gem 'checkout', '>= 0.1.1', github: "minestore/rails-checkout"
 
 # PostgreSQL gem
 gem 'pg'
+
+# Bootstrap
+gem 'bootstrap'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'mini_racer'
+
+# Font Awesome Sass gem
+gem 'font-awesome-sass'
+
+# Rest client
+gem 'rest-client'
+
+# State machine gem
+gem 'aasm'
+
+# CPF/CNPJ gem
+gem 'cpf_cnpj'
+
+# Adds jobs in a queue to run in background
+gem 'sidekiq'
+
+# Pagination gem
+gem 'will_paginate'

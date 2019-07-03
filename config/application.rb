@@ -15,5 +15,19 @@ module LabRails
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.before_configuration do
+      env_file = File.join(Rails.root, "config", "local_env.yml")
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_bot
+      g.factory_bot dir: 'spec/factories'
+      g.template_engine :erb
+      g.scaffold_stylesheet false
+    end
   end
 end
