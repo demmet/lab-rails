@@ -14,5 +14,25 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require popper
 //= require bootstrap-sprockets
+//= require moip-sdk-js
 //= require_tree .
+
+createCreditCardHash = () => {
+  let public_key = $("#textbox_public_key").val()
+  let card_number = $("#card_number").val()
+  let card_verification_code = $("#card_security_code").val()
+  let card_expiration_date = $("#card_expiration_date").val().split("/")
+  
+  MoipSdkJs.MoipCreditCard
+    .setPubKey(public_key)
+    .setCreditCard({
+        number: card_number,
+        cvc: card_verification_code,
+        expirationMonth: card_expiration_date[0],
+        expirationYear: card_expiration_date[1]
+    })
+    .hash()
+    .then(hash => $("#card_hash").val(hash))
+}

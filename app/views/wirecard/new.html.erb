@@ -1,0 +1,15 @@
+<%= form_tag({ action: "create" }, { id: 'search_form', method: 'post' }) do |form| %>
+
+  <label for="cpf">CPF:</label><%= form.text_field :cpf_input %>
+  <label for="birthdate_input">Birthdate</label><%= form.text_field :birthdate_input %>
+  <label for="phone_input">Phone</label><%= form.text_field :phone_input %>
+
+  <label for="card_holder_name">Card Holder Name:</label><%= form.text_field :card_holder_name %>
+  <label for="card_number">Card Number:</label><input id="card_number" type="text">
+  <label for="card_expiration_date">Expiration Date:</label><input id="card_expiration_date" type="text">
+  <label for="card_security_code">Security Code:</label><input id="card_security_code" type="text">
+
+  <input id="textbox_public_key" value="<%= @public_key %>" style="display: none">
+  <%= form.hidden_field :card_hash, id: "card_hash", style: "display: none" %>
+
+<% end %>
