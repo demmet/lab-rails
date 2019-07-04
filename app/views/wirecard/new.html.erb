@@ -1,15 +1,17 @@
-<%= form_tag({ action: "create" }, { id: 'search_form', method: 'post' }) do |form| %>
+<%= form_tag({ action: "create"}, { id: 'credit_card_form' }) do %>
+  <div class="credit-card-form">
+    <h3>Testing card payment</h3>
+    <label for="cpf">CPF:</label><%= text_field_tag :cpf_input, '457.783.575-40' %>
+    <label for="birthdate_input">Birthdate</label><%= text_field_tag :birthdate_input, '2000-10-10' %>
+    <label for="phone_input">Phone</label><%= text_field_tag :phone_input, '99999999' %>
 
-  <label for="cpf">CPF:</label><%= form.text_field :cpf_input %>
-  <label for="birthdate_input">Birthdate</label><%= form.text_field :birthdate_input %>
-  <label for="phone_input">Phone</label><%= form.text_field :phone_input %>
+    <label for="card_holder_name">Card Holder Name:</label><%= text_field_tag :card_holder_name, 'Testing Refund' %>
+    <label for="card_number">Card Number:</label><input id="card_number" type="text" value="4111111111111111">
+    <label for="card_expiration_date">Expiration Date:</label><input id="card_expiration_date" type="text" value="02/23">
+    <label for="card_security_code">Security Code:</label><input id="card_security_code" type="text" value="666">
 
-  <label for="card_holder_name">Card Holder Name:</label><%= form.text_field :card_holder_name %>
-  <label for="card_number">Card Number:</label><input id="card_number" type="text">
-  <label for="card_expiration_date">Expiration Date:</label><input id="card_expiration_date" type="text">
-  <label for="card_security_code">Security Code:</label><input id="card_security_code" type="text">
-
-  <input id="textbox_public_key" value="<%= @public_key %>" style="display: none">
-  <%= form.hidden_field :card_hash, id: "card_hash", style: "display: none" %>
-
+    <input id="textbox_public_key" value="<%= @public_key %>" style="display: none">
+    <%= hidden_field_tag :card_hash, id: "card_hash", style: "display: none" %>
+    <%= submit_tag "Submit" %>
+  </div>
 <% end %>

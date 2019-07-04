@@ -1,14 +1,16 @@
 class CheckoutService
-  def create_wirecard_payment
+  def create_wirecard_payment(credit_card_data)
     checkout_api = Checkout::Wirecard::Api.new
 
     order_hash = checkout_api.create_order_with_hash(create_order_hash)
 
-    payment_hash = create_credit_card_hash
+    payment_hash = create_credit_card_hash(credit_card_data)
 
     payment_response = checkout_api.create_payment_with_hash order_hash[:id], payment_hash
 
     save_payment_data payment_response
+  rescue => e
+    e
   end
 
   def create_order_hash
@@ -44,7 +46,7 @@ class CheckoutService
 
   def create_credit_card_hash(credit_card_data)
     {
-      statement_descriptor: "Testing Refund",
+      statement_descriptor: "Refund",
       installment_count: 1,
       funding_instrument: {
         credit_card: {
@@ -64,6 +66,6 @@ class CheckoutService
 
   def save_payment_data(payment_response)
     return nil unless payment_response.present? && payment_response[:id].present?
-    Payment.create(payment_status_id: payment_response[:status], wirecard_id: payment_response[:id])
+    Payment.create(status: payment_response[:status], wirecard_id: payment_response[:id])
   end
 end
